@@ -1,0 +1,14 @@
+http://feeds.dn.pt/DN-Politica
+http://feeds.jn.pt/JN-Politica
+http://expresso.sapo.pt/static/rss/atualidade--arquivo_23412.xml
+http://expresso.sapo.pt/static/rss/economia_23413.xml
+http://expresso.sapo.pt/static/rss/blogues_23423.xml
+http://expresso.sapo.pt/static/rss/opiniao_23424.xml
+http://expresso.sapo.pt/static/rss/sociedade_25194.xml
+http://expresso.sapo.pt/static/rss/a-europa-desalinhada_25281.xml
+http://expresso.sapo.pt/static/rss/dinheiro_25283.xml
+http://expresso.sapo.pt/static/rss/futuro-sustentavel-2010_25341.xml
+http://expresso.sapo.pt/static/rss/pt_25568.xml
+http://expresso.sapo.pt/static/rss/mercados_25511.xml
+http://expresso.sapo.pt/static/rss/quero-estudar-melhor_25593.xml
+
