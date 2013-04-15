@@ -1,6 +1,7 @@
 import pymongo
 import feedparser
 from pymongo import Connection
+import contentCollector
 
 #1. Collect the news 
 #2. Check if they are on MongoDB Already (using upsert =)
@@ -23,7 +24,10 @@ def collect(feedURL):
 		pLink = feed.entries[i].link
 		item["link"] = pLink
 		pDescription = feed.entries[i].description
-		item["description"] = pDescription
+
+		#Download a pristine version of the content
+		item["description"] = contentCollector.articleContent(pLink)
+		#item["description"] = pDescription
 		#pCategory = feed.entries[i].category #Not all feeds has :(
 		#item["category"] = pCategory
 		pPubdate = feed.entries[i].published
@@ -35,6 +39,8 @@ feedFilePath = "feeds.txt"
 feedInputFile = open(feedFilePath, "rb")
 
 for line in feedInputFile:
+	if(line.startswith("#")):
+		continue;
 	collect(line)
 
 feedInputFile.close()

@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import pymongo
 from pymongo import Connection
 from whoosh.fields import *
