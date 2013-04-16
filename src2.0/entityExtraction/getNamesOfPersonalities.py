@@ -1,52 +1,72 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import nltk
 import re
 from nltk.tag import *
 import pymongo
 from pymongo import Connection
 
+
+
+
 def extractNames():
     dbName = "eadw"
-    collectionName = "news"
+    collectionNameNews = "news"
+    collectionNamePersonalities = "newsPersonality"
     mongodbPort = 27017 #default
     mongoURL = 'localhost'
 
     mongodb = Connection(mongoURL, 27017)
     db = mongodb[dbName]
-    news = db[collectionName]
+    news = db[collectionNameNews]
+    pers = db[collectionNamePersonalities]
 
-    personalityList = []
+    personalitiesFile = open ("personalities.txt", 'rb')
+    personalitiesList = {}
+    for line in personalitiesFile:
+    	personalitiesList = eval(line)
+
+   
     cursor = news.find()
     doc = next(cursor, None) #no pymongo nao existe hasNext()
     while (doc != None):
+       	peopleList = [] 
         for sent in nltk.sent_tokenize(doc["description"]):
             for chunk in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent))):
-                print chunk
+                #print "CHUNK"
+                #print chunk
                 if hasattr(chunk, 'node'):
                     if chunk.node == "PERSON":
                         aux = ' '.join(c[0] for c in chunk.leaves())
-                        personalityList.append(aux)
+                        #1. Filtrar
+                        if aux in personalitiesList["listPersonalities"]: #Verificar se é personalidade
+                        	peopleList.append(aux)	
+                        else:
+                        	continue
+                      
 
-        doc = next(cursor, None)
-        print "Description"
-        print doc["description"]
-        print "Personalities"
-        print personalityList
-        raw_input("Check if Person took out well")                
+        # aqui "peopleList" tem a lista de personalidades deste doc
+        # 2 . Inserir na base de dados o doc + personalities
+        newDoc = doc
+        newDoc["personalities"] = peopleList
+        pers.insert(newDoc);
+        #print "Description"
+        #print doc["description"]
+        #print "Personalities"
+        #print peopleList
+        #raw_input("Check if Person took out well")  
+        doc = next(cursor, None)              
+
+
+
+
+#def personalityFilter(personList):
+
+
+
+
+
+
 
 extractNames()
-
-# def _getNames(): 
-#     text = "Rui afirmou na entrevista que constituiu o prefacio as suas aparicoes semanais na RTP que vinha para tomar a palavra e participar no debate publico. E ridiculo ter de o dizer mas esta no.O arquiteto Joaquim Soeiro e o candidato do PSD a Camara Municipal de Vendas Novas liderada pela CDU nas eleicoes autarquicas deste ano revelou hoje o proprio a agencia Lusa"
-#     list = []  
-#     for sent in nltk.sent_tokenize(text): 
-#         for chunk in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent))): 
-#             print chunk
-#             if hasattr(chunk, 'node'): 
-#                 if chunk.node == "PERSON":
-#                    aux = ' '.join(c[0] for c in chunk.leaves()) 
-#                     list.append(aux) 
-    
-#     print list 
-    
-    
-# _getNames()
