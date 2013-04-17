@@ -14,18 +14,23 @@ def sentilexToPython():
  
     for line in inputFile:
         splitted = line.split(";")
-        lista = []
-     
-        lista.append(splitted[1][3:])
-        lista.append(splitted[2][3:])
-        lista.append(splitted[3].split("=")[1])
-        lista.append(splitted[4][5:])
-        lista.append(splitted[0].split(".")[1].split("=")[1])
+        #lista = []
+        DicionarioAux = {}
+        DicionarioAux [splitted[1][:2]] = splitted[1][3:]
+        DicionarioAux [splitted[2][:3]] = splitted[2][3:] 
+        DicionarioAux [splitted[3].split("=")[0]] = splitted[3].split("=")[1]
+        DicionarioAux [splitted[4][:4]] = splitted[4][5:]
+        DicionarioAux [splitted[0].split(".")[1].split("=")[0]] = splitted[0].split(".")[1].split("=")[1] 
+        #lista.append(splitted[1][3:])
+        #lista.append(splitted[2][3:])
+        #lista.append(splitted[3].split("=")[1])
+        #lista.append(splitted[4][5:])
+        #lista.append(splitted[0].split(".")[1].split("=")[1])
         #print lista
       
       
-        palavras[splitted[0].split(",")[0]] = lista 
-        palavras[splitted[0].split(",")[1].split(".")[0]] = lista
+        palavras[splitted[0].split(",")[0]] = DicionarioAux
+        palavras[splitted[0].split(",")[1].split(".")[0]] = DicionarioAux
 
         #print dict
         #print dict.keys()
@@ -40,7 +45,16 @@ sentilexToPython()
  #      elif (palavras[tokens[i]][2] == '1'):
  #        positive = positive + 1
  #      else: 
- #        neutro = neutro + 1  
+ #        neutro = neutro + 1
+ #nova parte com dicionario
+ #for i in range(0,len(tokens)):
+  #  if tokens[i] in palavras.keys():
+   #    if (palavras[tokens[i]]['POL'] == '-1'):
+    #     negative = negative + 1
+     #  elif (palavras[tokens[i]]['POL'] == '1'):
+      #   positive = positive + 1
+       #else: 
+        # neutro = neutro + 1 
 
  # if negative > positive & negative > neutro:
  #    print "sent is negative"
