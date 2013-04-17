@@ -1,0 +1,23 @@
+{
+  "name": "nodeNewsCollector",
+  "version": "0.0.0",
+  "description": "news feed collector using node, beautiful soup and mongoDB",
+  "main": "collector.js",
+  "scripts": {
+    "test": "node collector.js"
+  },
+  "repository": "",
+  "keywords": [
+    "node",
+    "beautiful",
+    "soup",
+    "mongoDB",
+    "data-mining"
+  ],
+  "author": "David Dias",
+  "license": "MIT",
+  "dependencies": {
+    "feedparser": "~0.15.2",
+    "request": "~2.16.6"
+  }
+}
