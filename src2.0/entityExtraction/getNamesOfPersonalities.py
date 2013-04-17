@@ -41,7 +41,10 @@ def extractNames():
                         aux = ' '.join(c[0] for c in chunk.leaves())
                         #1. Filtrar
                         if aux in personalitiesList["listPersonalities"]: #Verificar se é personalidade
-                        	peopleList.append(aux)	
+                            if aux in peopleList: #To not repeat
+                                continue
+                            else:    
+                                peopleList.append(aux)	
                         else:
                         	continue
                       
@@ -50,7 +53,8 @@ def extractNames():
         # 2 . Inserir na base de dados o doc + personalities
         newDoc = doc
         newDoc["personalities"] = peopleList
-        pers.insert(newDoc);
+        pers.update({"title": newDoc["title"] }, newDoc, True); # upsert like a BOSS!
+        #pers.insert(newDoc);
         #print "Description"
         #print doc["description"]
         #print "Personalities"
