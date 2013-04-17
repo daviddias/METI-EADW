@@ -16,21 +16,29 @@ def sentilexToPython():
         splitted = line.split(";")
         #lista = []
         DicionarioAux = {}
-        DicionarioAux [splitted[1][:2]] = splitted[1][3:]
-        DicionarioAux [splitted[2][:3]] = splitted[2][3:] 
-        DicionarioAux [splitted[3].split("=")[0]] = splitted[3].split("=")[1]
-        DicionarioAux [splitted[4][:4]] = splitted[4][5:]
-        DicionarioAux [splitted[0].split(".")[1].split("=")[0]] = splitted[0].split(".")[1].split("=")[1] 
+        #DicionarioAux [splitted[1][:2]] = splitted[1][3:]
+        #DicionarioAux [splitted[2][:3]] = splitted[2][3:] 
+        #DicionarioAux [splitted[3].split("=")[0]] = splitted[3].split("=")[1]
+        #DicionarioAux [splitted[4][:4]] = splitted[4][5:]
+        #DicionarioAux [splitted[0].split(".")[1].split("=")[0]] = splitted[0].split(".")[1].split("=")[1] 
         #lista.append(splitted[1][3:])
         #lista.append(splitted[2][3:])
         #lista.append(splitted[3].split("=")[1])
         #lista.append(splitted[4][5:])
         #lista.append(splitted[0].split(".")[1].split("=")[1])
         #print lista
+      #parte nova
+        DicionarioAux [splitted[1][:2]] = splitted[1][3:]
+        DicionarioAux [splitted[2][:3]] = splitted[2][3:].split("=")[1]
+        
+        DicionarioAux [splitted[3][:4]] = splitted[3][5:]
+        DicionarioAux [splitted[0].split(".")[1].split("=")[0]] = splitted[0].split(".")[1].split("=")[1]
+         
       
-      
-        palavras[splitted[0].split(",")[0]] = DicionarioAux
-        palavras[splitted[0].split(",")[1].split(".")[0]] = DicionarioAux
+    
+        palavras[splitted[0].split(".")[0]] = DicionarioAux 
+        #palavras[splitted[0].split(",")[0]] = DicionarioAux
+        #palavras[splitted[0].split(",")[1].split(".")[0]] = DicionarioAux
 
         #print dict
         #print dict.keys()
