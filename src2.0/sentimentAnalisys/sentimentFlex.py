@@ -1,17 +1,21 @@
+
 import nltk
 
 palavras = {}
 positive = 0
 negative = 0
 neutro = 0
+result = 0
 aux = {}
-fileName = "SentiLex-flex-PT02.txt"
-inputFile = open(fileName,"rb")
-i = "abelhudo"
-text = "Antonio Joss Seguro ja leu a carta e prosseguiu a agenda do dia De momento nada mais ha a acrescentar disse a mesma fonte da direcao do PS fazendo contudo a seguinte ressalva Mas seria a primeira vez que um lider da oposicao nao estaria num encontro apos convite do primeiro ministro O primeiro ministro Pedro Passos Coelho convidou hoje o secretario geral do PS para um encontro a realizar na quarta feira de manha tendo em vista um entendimento sobre as medidas para a consolidacao orcamental Em particular torna se urgente garantir o cumprimento da execucao orcamental de 2013 e do quadro orcamental de medio prazo e concertar as medidas que garantam esse objetivo dado ate que algumas delas se encontram para alem do prazo da legislatura que cobre a acao do Governo escreve Pedro Passos Coelho numa carta enviada hoje a Antonio Jose Seguro a que a agencia Lusa teve acesso."
-tokens = nltk.word_tokenize(text)
 
-for line in inputFile:
+i = "abelhudo"
+
+
+
+def DictionaryOfWords():
+  fileName = "SentiLex-flex-PT02.txt"
+  inputFile = open(fileName,"rb")  
+  for line in inputFile:
         splitted = line.split(";")
         DicionarioAux = {}
         if(len(splitted[1].split('=')) == 1):
@@ -28,18 +32,49 @@ for line in inputFile:
         
         palavras[splitted[0].split(",")[0]] = DicionarioAux 
         palavras[splitted[0].split(",")[1]] = DicionarioAux
-        
-print palavras        
-for i in range(0,len(tokens)):
-    if tokens[i] in palavras.keys():
-       if (palavras[tokens[i]]['POL'] == '-1'):
-         negative = negative + 1
-         
-       elif (palavras[tokens[i]]['POL'] == '1'):
-         positive = positive + 1
-       else: 
-         neutro = neutro + 1  
+   
+  return palavras
 
-print negative
-print positive
-print neutro
+
+def checks(dict):
+  text1 = 'badalhoco ola es uma merda estarem sempre a bater na mesma tecla'
+  token = nltk.word_tokenize(text1)
+  text = 'A Justica deve ter como pressuposto a, e nao ha Justica sem verdade. Apurar a nem sempre e facil mas sem  nao ha Justica'
+  tokens = nltk.word_tokenize(text)
+  result = 0
+  for word in palavras.keys():
+    if word in text:
+       
+       if ' ' in word:
+          
+          if palavras[word]['POL'] == '-1':
+            result = result - 1 
+          elif palavras[word]['POL'] == '1':
+            result = result + 1 
+          else: result = result + 0
+      
+       elif (word in tokens): 
+           print word
+           if palavras[word]['POL'] == '-1':
+             result = result - 1 
+           elif palavras[word]['POL'] == '1':
+              result = result + 1 
+           else: result = result + 0  
+  print result
+  return result             
+
+checks(DictionaryOfWords())
+
+#for i in range(0,len(tokens)):
+#    if tokens[i] in palavras.keys():
+#       if (palavras[tokens[i]]['POL'] == '-1'):
+#         negative = negative + 1
+#         
+#       elif (palavras[tokens[i]]['POL'] == '1'):
+#         positive = positive + 1
+#       else: 
+#         neutro = neutro + 1  
+
+#print negative
+#print positive
+#print neutro
