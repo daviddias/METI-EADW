@@ -1,20 +1,10 @@
-
 import nltk
 
-palavras = {}
-positive = 0
-negative = 0
-neutro = 0
-result = 0
-aux = {}
-
-i = "abelhudo"
-
-
-
+ text = 'A Justica deve ter como pressuposto a, e nao ha Justica sem verdade. Apurar a nem sempre e facil mas sem  nao ha Justica'
 def DictionaryOfWords():
   fileName = "SentiLex-flex-PT02.txt"
-  inputFile = open(fileName,"rb")  
+  inputFile = open(fileName,"rb")
+  palavras = {}
   for line in inputFile:
         splitted = line.split(";")
         DicionarioAux = {}
@@ -36,10 +26,10 @@ def DictionaryOfWords():
   return palavras
 
 
-def checks(dict):
+def checks(palavras,text):
   text1 = 'badalhoco ola es uma merda estarem sempre a bater na mesma tecla'
   token = nltk.word_tokenize(text1)
-  text = 'A Justica deve ter como pressuposto a, e nao ha Justica sem verdade. Apurar a nem sempre e facil mas sem  nao ha Justica'
+ 
   tokens = nltk.word_tokenize(text)
   result = 0
   for word in palavras.keys():
@@ -63,7 +53,7 @@ def checks(dict):
   print result
   return result             
 
-checks(DictionaryOfWords())
+checks(DictionaryOfWords(),text)
 
 #for i in range(0,len(tokens)):
 #    if tokens[i] in palavras.keys():
