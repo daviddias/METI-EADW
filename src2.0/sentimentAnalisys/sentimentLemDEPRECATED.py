@@ -1,3 +1,5 @@
+#NOT USED SINCE FLEX ALREADY HAS THIS ONES
+
 import nltk
 
 #def sentilexToPython():
