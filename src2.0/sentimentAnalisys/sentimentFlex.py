@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import nltk
-
+import codecs
 
 def sentiLexFlexToDict():
   fileName = "SentiLex-flex-PT02.txt"
-  inputFile = open(fileName,"rb")
+  inputFile = codecs.open(fileName,"rb","utf-8")
   expressions = {}
   for line in inputFile:
         splitted = line.split(";")
@@ -39,6 +39,8 @@ def polarity(dictOfExpressions,textToAnalyse):
   result = 0
   
   for expression in dictOfExpressions.keys():
+    #print "the expression is:"
+    #print expression
     if expression in textToAnalyse:
        
        if ' ' in expression: #ver se é expressão ou palavra
@@ -49,7 +51,7 @@ def polarity(dictOfExpressions,textToAnalyse):
           else: result = result + 0
       
        elif (expression in tokens): 
-           print expression
+           #print expression
            if dictOfExpressions[expression]['POL'] == '-1':
              result = result - 1 
            elif dictOfExpressions[expression]['POL'] == '1':
@@ -57,7 +59,7 @@ def polarity(dictOfExpressions,textToAnalyse):
            else: result = result + 0  
 
 
-  print result
+  #print result
   return result             
 
 
