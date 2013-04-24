@@ -3,10 +3,10 @@
 import nltk
 
 
-def DictionaryOfWords():
+def sentiLexFlexToDict():
   fileName = "SentiLex-flex-PT02.txt"
   inputFile = open(fileName,"rb")
-  palavras = {}
+  expressions = {}
   for line in inputFile:
         splitted = line.split(";")
         DicionarioAux = {}
@@ -14,43 +14,45 @@ def DictionaryOfWords():
           DicionarioAux [splitted[1].split('=')[0]] = ''
         else:
           DicionarioAux [splitted[1].split('=')[0]] = splitted[1].split('=')[1] 
-        
+  
+
         DicionarioAux [splitted[2].split('=')[0]] = splitted[2].split('=')[1]
         DicionarioAux [splitted[3].split(':')[0]] = splitted[3].split(':')[1].split('=')[1]
+  
         if (splitted[4].split('=')[0] == 'ANOT'):
           DicionarioAux [splitted[4].split('=')[0]] = splitted[4].split('=')[1]
         else:
           DicionarioAux [splitted[4].split('=')[0].split(':')[0] ] = splitted[4].split('=')[1]
         
-        palavras[splitted[0].split(",")[0]] = DicionarioAux 
-        palavras[splitted[0].split(",")[1]] = DicionarioAux
+        expressions[splitted[0].split(",")[0]] = DicionarioAux 
+        expressions[splitted[0].split(",")[1]] = DicionarioAux
    
-  return palavras #SentiLex-Flex em Dict
+  return expressions #SentiLex-Flex em Dict
 
 
 
-def checks(palavras,text):
+def polarity(dictOfExpressions,textToAnalyse):
   #text1 = 'badalhoco ola es uma merda estarem sempre a bater na mesma tecla'
   #token = nltk.word_tokenize(text1) 
  
-  tokens = nltk.word_tokenize(text)
+  tokens = nltk.word_tokenize(textToAnalyse)
   result = 0
   
-  for word in palavras.keys():
-    if word in text:
+  for expression in dictOfExpressions.keys():
+    if expression in textToAnalyse:
        
-       if ' ' in word: #ver se é expressão ou palavra
-          if palavras[word]['POL'] == '-1':
+       if ' ' in expression: #ver se é expressão ou palavra
+          if dictOfExpressions[expression]['POL'] == '-1':
             result = result - 1 
-          elif palavras[word]['POL'] == '1':
+          elif dictOfExpressions[expression]['POL'] == '1':
             result = result + 1 
           else: result = result + 0
       
-       elif (word in tokens): 
-           print word
-           if palavras[word]['POL'] == '-1':
+       elif (expression in tokens): 
+           print expression
+           if dictOfExpressions[expression]['POL'] == '-1':
              result = result - 1 
-           elif palavras[word]['POL'] == '1':
+           elif dictOfExpressions[expression]['POL'] == '1':
               result = result + 1 
            else: result = result + 0  
 
@@ -59,15 +61,15 @@ def checks(palavras,text):
   return result             
 
 
-testText = 'A Justica deve ter como pressuposto a, e nao ha Justica sem verdade. Apurar a nem sempre e facil mas sem  nao ha Justica'
-checks(DictionaryOfWords(),testText)
+#testText = 'A Justica deve ter como pressuposto a, e nao ha Justica sem verdade. Apurar a nem sempre e facil mas sem  nao ha Justica'
+#polarity(sentiLexFlexToDict(),testText)
 
 #for i in range(0,len(tokens)):
-#    if tokens[i] in palavras.keys():
-#       if (palavras[tokens[i]]['POL'] == '-1'):
+#    if tokens[i] in dictOfExpressions.keys():
+#       if (dictOfExpressions[tokens[i]]['POL'] == '-1'):
 #         negative = negative + 1
 #         
-#       elif (palavras[tokens[i]]['POL'] == '1'):
+#       elif (dictOfExpressions[tokens[i]]['POL'] == '1'):
 #         positive = positive + 1
 #       else: 
 #         neutro = neutro + 1  

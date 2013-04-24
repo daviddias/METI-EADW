@@ -6,4 +6,3 @@
 #2 Analisar a polaridade
 #3 Adicionar a polaridade as personalidades desse artigo (2nd phase) - Adicionar só a polaridade de uma frase a pessoa que se encontra nela
 
-
