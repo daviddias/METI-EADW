@@ -38,6 +38,7 @@ while(doc != None):
  		results = searcher.search(query)
  		if len(results) > 0: # if 1 or more feeds with the title are found, it's because it was already added
  			print "Already existed"
+ 			doc = next(cursor, None)
  			continue
 	writer.add_document(title = doc["title"], link= doc["link"], description= doc["description"], pubdate=doc["pubdate"])
 	doc = next(cursor, None)
