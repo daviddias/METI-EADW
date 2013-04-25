@@ -46,7 +46,39 @@ def whoIsMoreHated(sortedDesc):
   print sortedDesc[-1]      
 
 
-whoIsMorePopular(orderedByPopularity())  
+def personalityPopularity(nameForSearch):
+  count = {}
+  result = 0
+  dbName = "eadw"
+ 
+  collectionNamePersonalitiesSentiment = "newsPersonalitySentiment"
+  mongodbPort = 27017 #default
+  mongoURL = 'localhost'
 
+  mongodb = Connection(mongoURL, 27017)
+  db = mongodb[dbName]
+  #news = db[collectionNameNews]
+  pers = db[collectionNamePersonalitiesSentiment]
 
-whoIsMoreHated(orderedByPopularity())
+  personalitiesFile = open ("../entityExtraction/personalities.txt", 'rb')
+  for line in personalitiesFile:
+      personalitiesList = eval(line)
+ 
+  if nameForSearch in personalitiesList['listPersonalities']:
+  
+    cursor = pers.find()
+    doc = next(cursor, None) #no pymongo nao existe hasNext()
+    while (doc != None): 
+      if nameForSearch in doc["personalities"]:
+       
+       #print doc["personalites"]
+        for name in doc["personalities"]:
+          if name == nameForSearch:               
+              result = result + doc["personalities"][name]
+          else:
+            continue
+      doc = next(cursor, None)
+  return result
+
+#whoIsMorePopular(orderedByPopularity())  
+#whoIsMoreHated(orderedByPopularity())

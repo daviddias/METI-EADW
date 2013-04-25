@@ -33,8 +33,8 @@ def search(terms):
 
 	evalValuesSorted = sorted(tuppleEvalValues, key=operator.itemgetter(3), reverse=True)
 
-	print evalValuesSorted
+	#print evalValuesSorted
+	return evalValuesSorted
 
-
-search("entrevista")
+#search("entrevista")
 

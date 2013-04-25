@@ -9,7 +9,7 @@ from whoosh.query import *
 from whoosh.index import open_dir
 
 #This code must be run inside the folder
-ix = open_dir("index_dir") #Index generated in previous lab
+ix = open_dir("../newsSearch/index_dir") #Index generated in previous lab
 
 
 def tfidf(queryTerms):
