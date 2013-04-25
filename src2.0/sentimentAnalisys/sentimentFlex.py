@@ -15,7 +15,6 @@ def sentiLexFlexToDict():
         else:
           DicionarioAux [splitted[1].split('=')[0]] = splitted[1].split('=')[1] 
   
-
         DicionarioAux [splitted[2].split('=')[0]] = splitted[2].split('=')[1]
         DicionarioAux [splitted[3].split(':')[0]] = splitted[3].split(':')[1].split('=')[1]
   

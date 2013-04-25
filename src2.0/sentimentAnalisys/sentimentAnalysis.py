@@ -51,7 +51,6 @@ def analyseSentiment():
 
     #doc["description"]
 
- 
   	#newDoc = doc
 	  #newDoc["personalities"] = peopleList
     newsPersonalitySentiment.update({"title": doc["title"] }, doc, True); # upsert like a BOSS!

@@ -63,14 +63,4 @@ def extractNames():
         doc = next(cursor, None)              
 
 
-
-
-#def personalityFilter(personList):
-
-
-
-
-
-
-
 extractNames()
