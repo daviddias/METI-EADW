@@ -50,7 +50,10 @@ def personalityPopularity(nameForSearch):
   count = {}
   result = 0
   dbName = "eadw"
- 
+  total = 0
+  positivo = 0
+  negativo = 0
+  finalResult = 0
   collectionNamePersonalitiesSentiment = "newsPersonalitySentiment"
   mongodbPort = 27017 #default
   mongoURL = 'localhost'
