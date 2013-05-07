@@ -6,6 +6,8 @@ import sys
 sys.path.append("../newsSearch")
 import NewsSearch
 import personalitySearch
+import specialSearch
+
 
 dbName = "eadw"
 collectionNameNews = "news"
@@ -22,57 +24,52 @@ for line in personalitiesFile:
   personalitiesList = eval(line)
  
 
+  print "\n\n"
+  print "####################################################################"
+  print "                           SUPER SEARCH                             "
+  print "         The best search engine about your favorite subject         "
+  print "                             POLITICS                               "
+  print "####################################################################"
+  print "\n\n"
+
+
 while True:
   readSearch = raw_input("Type your search: ")
+  if specialSearch.checkIfSpecial(readSearch):
+    continue
+
   personalitySearch.printPersonality(readSearch)
 
-  raw_input()
+
+  print "\n\n"
+  print "********************************************************************"
+  print "                            Fresh News                              "
+  print "\n\n"
 
 
-  # if readSearch in personalitiesList['listPersonalities']:
-  #   print 'Personality: '+ readSearch
-  #   print 'Popularity: ' + "Positive: " + str(popularity.personalityPopularity(readSearch)[1]) + " Negative: " + str(popularity.personalityPopularity(readSearch)[2]) + " Total of news: " + str(popularity.personalityPopularity(readSearch)[0]) + " Total: " + str(popularity.personalityPopularity(readSearch)[3])
-  # else:
-  #   print '-------------------------'
-  #   print 'News'
-  #   aux1 = NewsSearch.search(readSearch, "OR")
-  #   for i in range(0, len(aux1)):
-  #     cursor = news.find({"title" : aux1[i][0]})
-  #     doc = next(cursor, None) #no pymongo nao existe hasNext()
-      
-  #     print "title: " + doc['title'] + " \n"
-  #     print "description: " + doc['description'] + " \n"
-  #     print "link: " + doc['link'] + " \n"
-  #     print "##\n\n"
-  #   print '-------------------------' 
-  #   continue
-  
+  #1. ver se tenho personalities
+  #1.1 se sim fazer uma And Search com as personalities
+  #2. Or Search
+  #3. Mix both =)
 
 
-
-  # print "CHEGUEI AQUI"
-
-  # aux = graphSearch.graphSearch(readSearch)
-  # print "FIZ GRAPH Search"
-  # if len(aux) != 0:
-  #   print '\n-------------------------'
-  #   print 'Graph Search'
-  #   print aux
-  #   print '-------------------------\n\n'
- 
-  # print '-------------------------'
-  
+  names = personalitySearch.getPersonality(readSearch)
+  if len(names) != 0: # Do And + OR Search
+    stringNames = "".join(names)
+    result = NewsSearch.mixSearchAndSort(NewsSearch.searchInsideWhoosh(stringNames, "AND"), NewsSearch.searchInsideWhoosh(readSearch, "OR"))
+  else: # Do only OR Search
+    result = NewsSearch.searchAndSort(readSearch, "OR")
 
 
-
-  print 'News'
-  aux1 = NewsSearch.searchAndSort(readSearch, "OR")
-  for i in range(0, len(aux1)):
-    cursor = news.find({"title" : aux1[i][0]})
+  for i in range(0, len(result)):
+    if i == 11: #Chega 10 :)
+      break;
+    
+    cursor = news.find({"title" : result[i][0]})
     doc = next(cursor, None) #no pymongo nao existe hasNext()
       
-    print "title: " + doc['title'] + " \n"
-    print "description: " + doc['description'] + " \n"
-    print "link: " + doc['link'] + " \n"
-    print "##\n\n"
-  print '-------------------------'
+    print "Title: " + doc['title'] + " \n"
+    print "Description: " + doc['description'] + " \n"
+    print "Link: " + doc['link'] + " \n"
+    print "-----------------------------------------\n\n"
+  print "********************************************************************"

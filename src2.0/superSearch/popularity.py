@@ -40,10 +40,10 @@ def orderedByPopularity():
   return personalitiesSorted
 
 def whoIsMorePopular(sortedDesc):
-  print sortedDesc[0]      
+  return sortedDesc[0]      
 
 def whoIsMoreHated(sortedDesc):
-  print sortedDesc[-1]      
+  return sortedDesc[-1]      
 
 
 def personalityPopularity(nameForSearch):

@@ -34,8 +34,6 @@ def personPopularity(names):
      return result
  
 def printPersonality(text):
-    print "uhuhuhu olha para mim"
-
     related = {}
     popularity = {}
     names = []
@@ -53,7 +51,7 @@ def printPersonality(text):
         print 'PositiveScore: ' + str(popularity[names[i]][1])
         print 'NegativeScore: ' + str(popularity[names[i]][2])
       if len (related[names[i]]) != 0 :
-        print 'Related Graph: ' + str(related[names[i]])
+        print 'People Graph: ' + str(related[names[i]])
       print '-------------------------'
       print '\n'  
 
