@@ -8,7 +8,6 @@ def searchAndSort(terms, rule):
   return sort(searchInsideWhoosh(terms, rule))
 
 
-
 #Sorts a search
 def sort(search):
   tuppleEvalValues = []
