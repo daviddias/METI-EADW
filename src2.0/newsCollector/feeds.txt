@@ -1,4 +1,4 @@
-http://feeds.dn.pt/DN-Politica
+#http://feeds.dn.pt/DN-Politica
 http://feeds.jn.pt/JN-Politica
 #http://expresso.sapo.pt/static/rss/atualidade--arquivo_23412.xml
 #http://expresso.sapo.pt/static/rss/economia_23413.xml
