@@ -5,7 +5,7 @@ import popularity
 import sys
 sys.path.append("../newsSearch")
 import NewsSearch
-
+import personalitySearch
 
 dbName = "eadw"
 collectionNameNews = "news"
@@ -24,48 +24,49 @@ for line in personalitiesFile:
 
 while True:
   readSearch = raw_input("Type your search: ")
+  personalitySearch.printPersonality(readSearch)
 
-  #1. 
-  
+  raw_input()
 
 
-
-  if readSearch in personalitiesList['listPersonalities']:
-    print 'Personality: '+ readSearch
-    print 'Popularity: ' + "Positive: " + str(popularity.personalityPopularity(readSearch)[1]) + " Negative: " + str(popularity.personalityPopularity(readSearch)[2]) + " Total of news: " + str(popularity.personalityPopularity(readSearch)[0]) + " Total: " + str(popularity.personalityPopularity(readSearch)[3])
-  else:
-    print '-------------------------'
-    print 'News'
-    aux1 = NewsSearch.search(readSearch, "OR")
-    for i in range(0, len(aux1)):
-      cursor = news.find({"title" : aux1[i][0]})
-      doc = next(cursor, None) #no pymongo nao existe hasNext()
+  # if readSearch in personalitiesList['listPersonalities']:
+  #   print 'Personality: '+ readSearch
+  #   print 'Popularity: ' + "Positive: " + str(popularity.personalityPopularity(readSearch)[1]) + " Negative: " + str(popularity.personalityPopularity(readSearch)[2]) + " Total of news: " + str(popularity.personalityPopularity(readSearch)[0]) + " Total: " + str(popularity.personalityPopularity(readSearch)[3])
+  # else:
+  #   print '-------------------------'
+  #   print 'News'
+  #   aux1 = NewsSearch.search(readSearch, "OR")
+  #   for i in range(0, len(aux1)):
+  #     cursor = news.find({"title" : aux1[i][0]})
+  #     doc = next(cursor, None) #no pymongo nao existe hasNext()
       
-      print "title: " + doc['title'] + " \n"
-      print "description: " + doc['description'] + " \n"
-      print "link: " + doc['link'] + " \n"
-      print "##\n\n"
-    print '-------------------------' 
-    continue
+  #     print "title: " + doc['title'] + " \n"
+  #     print "description: " + doc['description'] + " \n"
+  #     print "link: " + doc['link'] + " \n"
+  #     print "##\n\n"
+  #   print '-------------------------' 
+  #   continue
   
 
 
 
-  print "CHEGUEI AQUI"
+  # print "CHEGUEI AQUI"
 
-  aux = graphSearch.graphSearch(readSearch)
-  print "FIZ GRAPH Search"
-  if len(aux) != 0:
-    print '\n-------------------------'
-    print 'Graph Search'
-    print aux
-    print '-------------------------\n\n'
+  # aux = graphSearch.graphSearch(readSearch)
+  # print "FIZ GRAPH Search"
+  # if len(aux) != 0:
+  #   print '\n-------------------------'
+  #   print 'Graph Search'
+  #   print aux
+  #   print '-------------------------\n\n'
  
-  print '-------------------------'
+  # print '-------------------------'
   
+
+
 
   print 'News'
-  aux1 = NewsSearch.search(readSearch)
+  aux1 = NewsSearch.searchAndSort(readSearch, "OR")
   for i in range(0, len(aux1)):
     cursor = news.find({"title" : aux1[i][0]})
     doc = next(cursor, None) #no pymongo nao existe hasNext()
