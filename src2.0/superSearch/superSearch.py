@@ -27,7 +27,7 @@ while True:
  
   if var in personalitiesList['listPersonalities']:
     print 'Personality: '+ var
-    print 'Popularity: ' + str(popularity.personalityPopularity(var))
+    print 'Popularity: ' + "Positive: " + str(personalitiesPopularity(var)[1]) + " Negative :" + str(personalitiesPopularity(var)[2]) + " TotalOfNews: " + str(personalitiesPopularity(var)[0]) + " Total: " + str(personalitiesPopularity(var)[0])
   else:
     print '-------------------------'
     print 'News'

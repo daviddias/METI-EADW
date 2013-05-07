@@ -50,7 +50,10 @@ def personalityPopularity(nameForSearch):
   count = {}
   result = 0
   dbName = "eadw"
- 
+  total = 0
+  positivo = 0
+  negativo = 0
+  finalResult = 0
   collectionNamePersonalitiesSentiment = "newsPersonalitySentiment"
   mongodbPort = 27017 #default
   mongoURL = 'localhost'
@@ -74,10 +77,21 @@ def personalityPopularity(nameForSearch):
        #print doc["personalites"]
         for name in doc["personalities"]:
           if name == nameForSearch:               
-              result = result + doc["personalities"][name]
+              if doc["personalities"][name] >= 0:
+                   positivo = positivo + doc["personalities"][name]
+                   finalResult = finalResult + doc["personalities"][name]
+              else:
+                  negativo = negativo + doc["personalities"][name]
+                  finalResult = finalResult + doc["personalities"][name]
+              total = total + 1    
           else:
             continue
       doc = next(cursor, None)
+  result = []
+  result.append(total)
+  result.append(positivo)
+  result.append(negativo)
+  result.append(finalResult)
   return result
 
 #whoIsMorePopular(orderedByPopularity())  
