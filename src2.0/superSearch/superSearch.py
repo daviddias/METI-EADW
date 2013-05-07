@@ -36,7 +36,7 @@ while True:
   else:
     print '-------------------------'
     print 'News'
-    aux1 = NewsSearch.search(readSearch)
+    aux1 = NewsSearch.search(readSearch, "OR")
     for i in range(0, len(aux1)):
       cursor = news.find({"title" : aux1[i][0]})
       doc = next(cursor, None) #no pymongo nao existe hasNext()

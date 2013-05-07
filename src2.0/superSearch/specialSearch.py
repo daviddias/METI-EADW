@@ -1,0 +1,1 @@
+#see if it's special search, if it is, do it and return true
