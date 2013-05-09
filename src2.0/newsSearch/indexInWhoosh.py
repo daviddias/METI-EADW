@@ -37,7 +37,7 @@ while(doc != None):
  		query = QueryParser("title", schema=ix.schema, group=AndGroup).parse(doc["title"])
  		results = searcher.search(query)
  		if len(results) > 0: # if 1 or more feeds with the title are found, it's because it was already added
- 			print "Already existed"
+ 			#print "Already existed"
  			doc = next(cursor, None)
  			continue
 	writer.add_document(title = doc["title"], link= doc["link"], description= doc["description"], pubdate=doc["pubdate"])

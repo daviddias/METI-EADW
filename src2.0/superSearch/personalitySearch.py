@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import graphSearch
 import popularity
 import nltk
@@ -12,6 +14,17 @@ def getPersonality(text):
     if p in text:
       names.append(p)
   return names
+
+
+def printPeopleGraph(dictNames):
+  related = []
+  for p in dictNames.keys():
+    related.append(p)
+    related.append(" : ")
+    related.append(str(dictNames[p]))
+    related.append(" ; ")
+  result = "".join(related)
+  return result
 
 
 def relatedPersonalities(names):
@@ -46,14 +59,17 @@ def printPersonality(text):
       print 'Personality: ' + names[i]
       
       if popularity[names[i]][0] != 0 or popularity[names[i]][1] != 0 or popularity[names[i]][2] != 0 or popularity[names[i]][3]:
-        print 'Popularity:' + str(popularity[names[i]][3])  
-        print 'Appears in : ' +  str(popularity[names[i]][0]) + ' News'
+        print 'Popularity: ' + str(popularity[names[i]][3])  
+        print 'Appears in: ' +  str(popularity[names[i]][0]) + ' News'
         print 'PositiveScore: ' + str(popularity[names[i]][1])
         print 'NegativeScore: ' + str(popularity[names[i]][2])
       if len (related[names[i]]) != 0 :
-        print 'People Graph: ' + str(related[names[i]])
+        print 'People Graph: ' + printPeopleGraph(related[names[i]])
       print '-------------------------'
       print '\n'  
+
+
+
 
 
 #printPersonality("ola eu sou o Miguel Relvas e o Carlos Zorrinho")
