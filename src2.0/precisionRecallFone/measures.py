@@ -25,7 +25,7 @@ def precision(listOfReturnedDocumentsID, relevantDocuments):
     return counter/float(len(listOfReturnedDocumentsID))
 
 #F1
-def Fone(listOfReturnedDocumentsID, relevantDocuments):
+def fone(listOfReturnedDocumentsID, relevantDocuments):
     re = recall(listOfReturnedDocumentsID, relevantDocuments)
     pr = precision(listOfReturnedDocumentsID, relevantDocuments)
     if re == 0 and pr == 0:
