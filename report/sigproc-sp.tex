@@ -51,14 +51,38 @@ MINING SCHEME MINING SCHEME MINING SCHEME MINING SCHEME MINING SCHEME MINING SCH
 \subsubsection{News Search}
 
 \subsubsection{Extraction of Named Entities}
-
+A classe que implementa esta funcionalidade é entityExtraction/getNamesOfPersonalities.py. 
+A função que implementa esta funcionalidade e extractNames. 
+Esta função obtém todas as noticias guardadas na base de dados. 
+Depois pega em cada noticia e divide a por frases usando a função nltk.sent_tokenize da biblioteca nltk. 
+Em seguida usando a função nltk.word_tokenize divide cada frase por palavras e logo em seguida classifica cada palavra utilizado a função nltk.pos_tag. 
+Depois de todas as palavras estarem classificada construi  uma parse tree através da função nltk.ne_chunk.
+Depois verifica se cada nó e do tipo PERSON caso seja, verifica se este se encontra no texto personalities.txt. 
+Caso estas duas condições estejam certas introduz se o nome numa lista. 
+Por último introduz se na base de dados a noticia com a lista de personalidades encontradas nesta.
 
 \subsubsection{Sentiment Analysis}
+A classe que implementa esta funcionalidade sentimentAnalisys / sentimentFlex.py.
+A função sentiLexFlexToDict começa por obter toda a informação que se encontra no ficheiro SentiLex-flex-PT02.txt. 
+E em seguida construir uma estrutura de dados mais fácil de aceder e com apenas a informação pretendida.
+A função polarity recebe a estrutura de dados e a notícia que vai ser analisada. 
+Esta função divide a notícia por frases. 
+Depois em cada uma das frases é verificada a existência de expressões e palavras que se encontram na estrutura de dados recebida. 
+Caso exista executa se uma operação de soma ou subtração de acordo com o valor da polaridade. 
+Assim consegue se saber se uma certa notícia é positiva ou negativa.
 
 
 \subsubsection{Super Search}
+Esta funcionalidade trata três tipos de pesquisa: personalidades pesquisa de conteúdos e qual a personalidade mais ou menos popular
+Quando se realize uma pesquisa de uma personalidade o resultado esperado é o nome da personalidade, as personalidades que se relacionam com a personalidade pesquisada e suas popularidades, a popularidade da personalidade pesquisada e as noticias onde a personalidade e referida.
+A função que trata a descoberta de personalidades relacionadas é graphSearch.A função primeiro verifica se a personalidade introduzida para pesquisa se encontra no ficheiro
+personalities.txt. Caso exista vai a base de dados procurar as noticias onde a personalidade e referida e obtém as outras personalidades que também foram referidas nessa noticia.
+A função que indica a popularidade e personalityPopularity. A função primeiro verifica se a personalidade introduzida para pesquisa se encontra no ficheiro personalities.txt. Caso exista vai a base de dados procurar as noticias onde a personalidade e referida e verifica de que forma a personalidade é referida na notícia de forma positiva ou de forma negativa. No fim de percorrer todas as notícias alcançasse a popularidade da personalidade pesquisada.
 
-
+Quando se realiza uma pesquisa por qual é a personalidade mais popular ou menos popular executa se ou a função whoIsMorePopular ou WhoIsMoreHated. 
+Esta duas funções são executadas dependo da query que é introduzida caso seja introduzida “who is more popular” é executada a função whoIsMorePopular, caso seja introduzida “who is more hated” é executada a outra função. 
+Estas duas funções recebem uma estrutura de dados que contem todas as personalidades e sua popularidade. 
+Esta estrutura é criada pela função orderedByPopularity que obtém os nomes das personalidades e sua popularidade a partir da base de dados introduzindo as numa estrutura de dados que em seguida será ordenada usando a função sorted do python.
 \section{Result analysis}
 
 \subsection{Experimental Results}
