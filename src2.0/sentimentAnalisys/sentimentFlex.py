@@ -31,15 +31,10 @@ def sentiLexFlexToDict():
 
 
 def polarity(dictOfExpressions,textToAnalyse):
-  #text1 = 'badalhoco ola es uma merda estarem sempre a bater na mesma tecla'
-  #token = nltk.word_tokenize(text1) 
- 
   tokens = nltk.word_tokenize(textToAnalyse)
   result = 0
   
   for expression in dictOfExpressions.keys():
-    #print "the expression is:"
-    #print expression
     if expression in textToAnalyse:
        
        if ' ' in expression: #ver se é expressão ou palavra
@@ -50,7 +45,6 @@ def polarity(dictOfExpressions,textToAnalyse):
           else: result = result + 0
       
        elif (expression in tokens): 
-           #print expression
            if dictOfExpressions[expression]['POL'] == '-1':
              result = result - 1 
            elif dictOfExpressions[expression]['POL'] == '1':
@@ -60,21 +54,3 @@ def polarity(dictOfExpressions,textToAnalyse):
 
   #print result
   return result             
-
-
-#testText = 'A Justica deve ter como pressuposto a, e nao ha Justica sem verdade. Apurar a nem sempre e facil mas sem  nao ha Justica'
-#polarity(sentiLexFlexToDict(),testText)
-
-#for i in range(0,len(tokens)):
-#    if tokens[i] in dictOfExpressions.keys():
-#       if (dictOfExpressions[tokens[i]]['POL'] == '-1'):
-#         negative = negative + 1
-#         
-#       elif (dictOfExpressions[tokens[i]]['POL'] == '1'):
-#         positive = positive + 1
-#       else: 
-#         neutro = neutro + 1  
-
-#print negative
-#print positive
-#print neutro

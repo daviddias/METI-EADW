@@ -9,9 +9,6 @@ import sentimentFlex
 #2 Analisar a polaridade
 #3 Adicionar a polaridade as personalidades desse artigo (2nd phase) - Adicionar só a polaridade de uma frase a pessoa que se encontra nela
 
-
-
-
 def analyseSentiment():
   dbName = "eadw"
   collectionNamePersonalities = "newsPersonality"
@@ -25,10 +22,8 @@ def analyseSentiment():
   newsPersonality = db[collectionNamePersonalities]
   newsPersonalitySentiment = db[collectionNamePersonalitiesSentiment]
 
-  #print "fetching sentilex"
   sentilex = sentimentFlex.sentiLexFlexToDict() # dict to use to know the sentiment
-  #print "sentilex fetch"
-
+  
   cursor = newsPersonality.find()
   doc = next(cursor, None) #no pymongo nao existe hasNext()
   while (doc != None):
@@ -36,23 +31,14 @@ def analyseSentiment():
       doc = next(cursor, None)   
       continue
 
-    #BOOST THIS BY CHECKING SENTENCE BY SENTENCE AND THEN ONLY ADDING THAT SENTIMENT TO THE PEOPLE THAT APPEAR
     sentimentValue = sentimentFlex.polarity(sentilex,doc["description"])
-    #print "Sentiment is: " + str(sentimentValue)
-
+    
     personalities = doc["personalities"]
     doc["personalities"] = {} # convert to dic
 
     for person in personalities:
       doc["personalities"][person] = sentimentValue
 
-    #print doc
-    #raw_input("Confirm please :)")
-
-    #doc["description"]
-
-  	#newDoc = doc
-	  #newDoc["personalities"] = peopleList
     newsPersonalitySentiment.update({"title": doc["title"] }, doc, True); # upsert like a BOSS!
     doc = next(cursor, None)   
 
