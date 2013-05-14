@@ -143,15 +143,7 @@ The function that handles the discovery of related personalities is graphSearch.
 
 The function that handles the discovery the popularity of personality is personalityPopularity. The function first checks if the personality researched is in the personalities.txt file. If the personality is in the file, is made a search in the data base for all the new where the personality is mentioned. Then check if the personality is mentioned in a positive or negative. This check is made on all news obtained. After that is possible to deduce if the personality have good or a bad popularity.
 
-
-Quando se realiza uma pesquisa por qual é a personalidade mais popular ou menos popular executa se ou a função whoIsMorePopular ou WhoIsMoreHated. 
-Esta duas funções são executadas dependo da query que é introduzida caso seja introduzida “who is more popular” é executada a função whoIsMorePopular, caso seja introduzida “who is more hated” é executada a outra função. 
-Estas duas funções recebem uma estrutura de dados que contem todas as personalidades e sua popularidade. 
-Esta estrutura é criada pela função orderedByPopularity que obtém os nomes das personalidades e sua popularidade a partir da base de dados introduzindo as numa estrutura de dados que em seguida será ordenada usando a função sorted do python.
-
-
-
-
+When is perform a search to know what is the most or less popular personality the functions that are performs are whoIsMorePopular and whoIsMoreHated. These two functions are only executed when a search is made with the following words: “who is more popular” or “who is more hated”.The functions receive a data structure that contains the name of the personalities and its popularity. This data structure is created by the function orderedByPopularity that build a data structure with the personalities names and their popularity. And orders this structure using this function sorded python.
 
 
 \section{Result analysis}
