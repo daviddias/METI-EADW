@@ -145,6 +145,7 @@ The function that handles the discovery the popularity of personality is persona
 
 When is perform a search to know what is the most or less popular personality the functions that are performs are whoIsMorePopular and whoIsMoreHated. These two functions are only executed when a search is made with the following words: “who is more popular” or “who is more hated”.The functions receive a data structure that contains the name of the personalities and its popularity. This data structure is created by the function orderedByPopularity that build a data structure with the personalities names and their popularity. And orders this structure using this function sorded python.
 
+The presentation of news depends on the type of research done. If the research have a name of personality a search is performed to search for all the news where the personality is mentioned. And these news are presented for a degree of relevance. On the other hand if the research do not have a name of personality the news that are presented are those with more relevance.
 
 \section{Result analysis}
 To test our implementation, we executed two kinds of analysis, one based in the traditional measures, Precision, Recall and F1 metrics, and a more human testing approach, the second approach is less unfeasible for large data sets and real world live production services, however, due to our data-set being dynamic and growing only at a small rate, it was impossible for us to classify relevant documents for high amount of queries to execute the tests automatically.
