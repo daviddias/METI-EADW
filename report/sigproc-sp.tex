@@ -1,4 +1,3 @@
-
 \documentclass{acm_proc_article-sp}
 
 
@@ -138,11 +137,12 @@ MUDAR ESTA PARA INGLÊS
 ###
 
 
-Esta funcionalidade trata três tipos de pesquisa: personalidades pesquisa de conteúdos e qual a personalidade mais ou menos popular
-Quando se realize uma pesquisa de uma personalidade o resultado esperado é o nome da personalidade, as personalidades que se relacionam com a personalidade pesquisada e sua popularidade, a popularidade da personalidade pesquisada e as noticias onde a personalidade e referida.
-A função que trata a descoberta de personalidades relacionadas é graphSearch.A função primeiro verifica se a personalidade introduzida para pesquisa se encontra no ficheiro
-personalities.txt. Caso exista vai a base de dados procurar as noticias onde a personalidade e referida e obtém as outras personalidades que também foram referidas nessa noticia.
-A função que indica a popularidade e personalityPopularity. A função primeiro verifica se a personalidade introduzida para pesquisa se encontra no ficheiro personalities.txt. Caso exista vai a base de dados procurar as noticias onde a personalidade e referida e verifica de que forma a personalidade é referida na notícia de forma positiva ou de forma negativa. No fim de percorrer todas as notícias alcançasse a popularidade da personalidade pesquisada.
+SuperSearch is implemented in the folder "SuperSearch". This feature treats three types of research: personalities, content search and which is the personality more or less popular. 
+When is perform a search of a personality the expected result is the name of the personality, the personalities that relate to the personality researched and their popularity, the popularity of the personality researched and the news where the personality is referred.
+The function that handles the discovery of related personalities is graphSearch. The function first checks if the personality researched is in the personalities.txt file. If the personality is in the file, is made a search in the data base for all the new where the personality is mentioned. After this search for other personalities that are mentioned in the obtained news and count the number of times that personalities appears.
+
+The function that handles the discovery the popularity of personality is personalityPopularity. The function first checks if the personality researched is in the personalities.txt file. If the personality is in the file, is made a search in the data base for all the new where the personality is mentioned. Then check if the personality is mentioned in a positive or negative. This check is made on all news obtained. After that is possible to deduce if the personality have good or a bad popularity.
+
 
 Quando se realiza uma pesquisa por qual é a personalidade mais popular ou menos popular executa se ou a função whoIsMorePopular ou WhoIsMoreHated. 
 Esta duas funções são executadas dependo da query que é introduzida caso seja introduzida “who is more popular” é executada a função whoIsMorePopular, caso seja introduzida “who is more hated” é executada a outra função. 
